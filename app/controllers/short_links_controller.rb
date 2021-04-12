@@ -10,7 +10,10 @@ class ShortLinksController < ApplicationController
 
   # GET /short_links/1
   def show
-    render json: @short_link
+    respond_to do |format|
+      format.json { render json: @short_link }
+      format.html { redirect_to @short_link.url }
+    end
   end
 
   # POST /short_links
