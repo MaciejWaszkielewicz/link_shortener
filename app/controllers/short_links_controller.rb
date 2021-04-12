@@ -3,8 +3,8 @@ class ShortLinksController < ApplicationController
 
   # GET /short_links
   def index
-    @short_links = ShortLink.all
-
+    authorize! :index, ShortLink
+    @short_links = ShortLink.where(user: current_user)
     render json: @short_links
   end
 
@@ -19,7 +19,8 @@ class ShortLinksController < ApplicationController
   # POST /short_links
   def create
     @short_link = ShortLink.new(short_link_params)
-
+    @short_link.user = current_user
+    authorize! :create, @short_link
     if @short_link.save
       render json: @short_link, status: :created, location: @short_link
     else
@@ -29,6 +30,7 @@ class ShortLinksController < ApplicationController
 
   # PATCH/PUT /short_links/1
   def update
+    authorize! :update, @short_link
     if @short_link.update(short_link_params)
       render json: @short_link
     else
@@ -38,6 +40,7 @@ class ShortLinksController < ApplicationController
 
   # DELETE /short_links/1
   def destroy
+    authorize! :destroy, @short_link
     @short_link.destroy
   end
 
@@ -49,6 +52,6 @@ class ShortLinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def short_link_params
-      params.require(:short_link).permit(:slug, :user_id, :url)
+      params.require(:short_link).permit(:slug, :url)
     end
 end
