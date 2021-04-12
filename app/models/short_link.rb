@@ -12,6 +12,8 @@ class ShortLink < ApplicationRecord
     slug
   end
 
+  private
+
   def generate_slug
     loop do
       self.slug = (0..8).map{['-', *('a'..'z'), *('A'..'Z'), *('0'..'9')].sample}.join
