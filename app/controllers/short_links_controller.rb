@@ -41,7 +41,7 @@ class ShortLinksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_short_link
-      @short_link = ShortLink.find(params[:id])
+      @short_link = ShortLink.find_by(slug: params[:slug])
     end
 
     # Only allow a list of trusted parameters through.
