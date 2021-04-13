@@ -2,6 +2,8 @@ class ShortLinksController < ApplicationController
   def_param_group :short_link do
     param :slug, String, desc: 'Slug that will be used in short link (if nil then it will be generated)'
     param :url, String, required: true, desc: 'Url that should start with http/https protocol'
+    param :user_id, Integer, desc: 'Owner id'
+    param :views_counter, Integer, desc: 'Visit counter'
   end
 
   def_param_group :short_link_neasted do
@@ -28,7 +30,10 @@ class ShortLinksController < ApplicationController
   def show
     respond_to do |format|
       format.json { render json: @short_link }
-      format.html { redirect_to @short_link.url }
+      format.html do
+        @short_link.update_attribute(:views_counter,'short_links.views_counter + 1')
+        redirect_to @short_link.url
+      end
     end
   end
 
