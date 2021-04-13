@@ -35,3 +35,6 @@ When server is running, documentation is available on link
 ```
 <server address>/apipie/
 ```
+
+## Live
+[documentation](https://short-links-123.herokuapp.com/apipie)
