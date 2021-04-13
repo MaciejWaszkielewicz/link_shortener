@@ -33,12 +33,12 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'devise_token_auth'
 gem 'cancancan'
 
+# doc
+gem 'apipie-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-
-  # doc
-  gem 'apipie-rails'
 end
 
 group :test do

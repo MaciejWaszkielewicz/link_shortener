@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_04_13_083419) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "short_links", force: :cascade do |t|
     t.string "slug"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
