@@ -5,4 +5,8 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
   end
+
+  factory :short_link do
+    url { Faker::Internet.url }
+  end
 end
